@@ -250,44 +250,59 @@ Taste_experience	Taste_experience_percentage
 3	                29.4167	
 1	                10.8500	
 
-1 (Poor)
-		2 (Below average)
-		3 (Average)
-		4 (Good)
-		5 (Excellent)
+          -----      1 (Poor)
+		     2 (Below average)
+		     3 (Average)
+		     4 (Good)
+		     5 (Excellent)  ----
 
 
 
 
 
-select Reasons_preventing_trying,(count( Reasons_preventing_trying)/(select count(Reasons_preventing_trying) from fact_survey))*100 as Reasons_preventing_trying_ from fact_survey group by  Reasons_preventing_trying;
+select
+	Reasons_preventing_trying,
+	(count( Reasons_preventing_trying)/(select count(Reasons_preventing_trying) from fact_survey))*100 as Reasons_preventing_trying_percentage
+	     from 
+	        fact_survey
+	        group by Reasons_preventing_trying;
 
 
-Reasons_preventing_trying	Reasons_preventing_trying_	
+Reasons_preventing_trying	Reasons_preventing_trying_percentage	
 Unfamiliar with the brand	18.1667	
 Not interested in energy drinks	21.9667	
-Not available locally	24.3333	
-Other	12.9333	
-Health concerns	22.6000	
+Not available locally	        24.3333	
+Other	                        12.9333	
+Health concerns	                22.6000	
 
 
 
 
-select Reasons_for_choosing_brands,(count(Reasons_for_choosing_brands)/(select count(Reasons_for_choosing_brands) from fact_survey))*100 as Reasons_for_choosing_brands_ from fact_survey group by  Reasons_for_choosing_brands;
+select 
+	Reasons_for_choosing_brands,
+	(count(Reasons_for_choosing_brands)/(select count(Reasons_for_choosing_brands) from fact_survey))*100 as Reasons_for_choosing_brands_percentage
+	      from 
+	         fact_survey
+	         group by  Reasons_for_choosing_brands;
 
 
-Reasons_for_choosing_brands	Reasons_for_choosing_brands_	
-Availability	19.3500	
-Other	16.9333	
-Brand reputation	26.2667	
-Effectiveness	17.6833	
-Taste/flavor preference	19.7667	
+Reasons_for_choosing_brands	Reasons_for_choosing_brands_percentage	
+Availability	                19.3500	
+Other	                        16.9333	
+Brand reputation	        26.2667	
+Effectiveness	                17.6833	
+Taste/flavor preference	        19.7667	
 
 
 
 
 
-select Improvements_desired,(count(Improvements_desired)/(select count(Improvements_desired) from fact_survey))*100 as Improvements_desired_ from fact_survey group by Improvements_desired;
+select 
+	Improvements_desired,
+	(count(Improvements_desired)/(select count(Improvements_desired) from fact_survey))*100 as Improvements_desired_
+	      from
+	          fact_survey
+	          group by Improvements_desired;
 
 
 Improvements_desired	Improvements_desired_	
@@ -300,20 +315,30 @@ Healthier alternatives	15.0000
 
 
 
-select Interest_in_natural_or_organic,(count(Interest_in_natural_or_organic)/(select count(Interest_in_natural_or_organic) from fact_survey))*100 as Interest_in_natural_or_organic_ from fact_survey group by Interest_in_natural_or_organic;
+select 
+	Interest_in_natural_or_organic,
+	(count(Interest_in_natural_or_organic)/(select count(Interest_in_natural_or_organic) from fact_survey))*100 as Interest_in_natural_or_organic_percentage
+	     from
+	          fact_survey 
+	          group by Interest_in_natural_or_organic;
 
 
-Interest_in_natural_or_organic	Interest_in_natural_or_organic_	
-Yes	50.1000	
-Not Sure	19.6667	
-No	30.2333	
+Interest_in_natural_or_organic	Interest_in_natural_or_organic_percentage	
+Yes	                        50.1000	
+Not Sure	                19.6667	
+No	                        30.2333	
 
 
 
-select Price_range,(count(Price_range)/(select count(Price_range) from fact_survey))*100 as Price_range_ from fact_survey group by Price_range;
+select
+	Price_range,
+	(count(Price_range)/(select count(Price_range) from fact_survey))*100 as Price_range_percentage
+	    from 
+	         fact_survey
+	         group by Price_range;
 
 
-Price_range	Price_range_	
+Price_range	Price_range_percentage	
 50-99	         42.1500	
 100-150    	 31.0500	
 Above 150	 15.8833	
@@ -325,30 +350,40 @@ Below 50	 10.9167
 
 
 
-select Purchase_location,(count(Purchase_location)/(select count(Purchase_location) from fact_survey))*100 asPurchase_location_ from fact_survey group by Purchase_location;
+select Purchase_location,
+	(count(Purchase_location)/(select count(Purchase_location) from fact_survey))*100 asPurchase_location_percentage
+	    from
+	         fact_survey
+	          group by Purchase_location;
 
 
-Purchase_location	asPurchase_location_	
-Supermarkets	        44.8833	
-Online retailers	26.0667	
+Purchase_location	        asPurchase_location_	
+Supermarkets	                44.8833	
+Online retailers	        26.0667	
 Gyms and fitness centers	14.3500	
-Other	                6.6000	
-Local stores	         8.1000	
+Other	                        6.6000	
+Local stores	                8.1000	
 
 
 b. Which cities do we need to focus more on? 
 
 
 
-select city,(count(city)/(select count(city) from fact_survey))*100 as city_perc from fact_survey group by city order by city_perc asc limit 5;
+select 
+	city,
+	(count(city)/(select count(city) from fact_survey))*100 as city_percentage
+	       from
+	          fact_survey 
+	          group by city
+	          order by city_perc asc limit 5;
 
 
-city	city_perc   	
-Lucknow	1.6000	
-Jaipur	3.4833	
-Delhi	4.2500	
-Ahmedabad	4.6333	
-Kolkata	5.4333	
+city	           city_percentage   	
+Lucknow	           1.6000	
+Jaipur	           3.4833	
+Delhi	           4.2500	
+Ahmedabad	   4.6333	
+Kolkata	           5.4333	
 
 
 
@@ -356,15 +391,20 @@ b. What are the typical consumption situations for energy drinks among responden
 
 
 
-select Typical_consumption_situations,(count(Typical_consumption_situations)/(select count(Typical_consumption_situations) from fact_survey))*100 as Typical_consumption_situations_perc from fact_survey group by Typical_consumption_situations;
+select 
+	Typical_consumption_situations,
+	(count(Typical_consumption_situations)/(select count(Typical_consumption_situations) from fact_survey))*100 as Typical_consumption_situations_percentage 
+	     from
+	         fact_survey
+	         group by Typical_consumption_situations;
 
 
-Typical_consumption_situations	Typical_consumption_situations_perc	
-Studying/working late	32.2333	
-Sports/exercise	44.6500	
-Social outings/parties	15.3833	
-Other	4.7000	
-Driving/commuting	3.0333	
+Typical_consumption_situations	      Typical_consumption_situations_percentage	
+Studying/working late	              32.2333	
+Sports/exercise	                      44.6500	
+Social outings/parties	              15.3833	
+Other	                              4.7000	
+Driving/commuting	              3.0333	
 
 
 
