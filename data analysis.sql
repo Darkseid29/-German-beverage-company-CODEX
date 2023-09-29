@@ -168,17 +168,21 @@ Collectible packaging     	      15.5667
 
 
 
-select Current_brands ,(count(Current_brands)/(select count(Current_brands)  from fact_survey))*100 as preferred_brand from fact_survey group by Current_brands;
+select
+	Current_brands ,
+	(count(Current_brands)/(select count(Current_brands)  from fact_survey))*100 as preferred_brand_percentage
+	       from 
+	          fact_survey
+	          group by current_brands;
 
-
-Current_brands	preferred_brand	
-Blue Bull	10.5833	
-Bepsi	21.2333	
-Sky 9	9.1500	
-Cola-Coka	25.5000	
-Gangster	18.7000	
-CodeX	9.9667	
-Others	4.8667	
+Current_brands	    preferred_brand	
+Blue Bull	    10.5833	
+Bepsi	            21.2333	
+Sky 9	            9.1500	
+Cola-Coka	    25.5000	
+Gangster	    18.7000	
+CodeX	            9.9667	
+Others	            4.8667	
 
 
 
@@ -187,46 +191,64 @@ b. What are the primary reasons consumers prefer those brands over ours?
 
 
 
-select Heard_before,(count(Heard_before)/(select count(Heard_before) from fact_survey))*100 as heard_before_ from fact_survey group by Heard_before;
+select 
+	Heard_before,
+	(count(Heard_before)/(select count(Heard_before) from fact_survey))*100 as heard_before_percentage
+	      from
+	        fact_survey
+	        group by Heard_before;
 
 
-Heard_before	heard_before_	
-Yes	44.3167	
-No	55.6833	
-
-
-
-
-select Brand_perception,(count( Brand_perception)/(select count( Brand_perception) from fact_survey))*100 as  Brand_perception_ from fact_survey group by  Brand_perception;
-
-
-Brand_perception	Brand_perception_	
-Neutral	60.1333	
-Positive	22.0500	
-Negative	17.8167	
+Heard_before	heard_before_percentage	
+Yes	        44.3167	
+No	        55.6833	
 
 
 
 
-
-select Tried_before,(count( Tried_before)/(select count(Tried_before) from fact_survey))*100 as Tried_before_ from fact_survey group by  Tried_before;
-
-
-Tried_before	Tried_before_	
-No	51.3000	
-Yes	48.7000	
-
+select
+	Brand_perception,
+	(count( Brand_perception)/(select count( Brand_perception) from fact_survey))*100 as  Brand_perception_percentage 
+	     from
+	        fact_survey 
+	        group by  Brand_perception;
 
 
-select Taste_experience,(count( Taste_experience)/(select count(Taste_experience) from fact_survey))*100 as Taste_experience_ from fact_survey group by  Taste_experience;
+Brand_perception	Brand_perception_percentage	
+Neutral	                60.1333	
+Positive	        22.0500	
+Negative	        17.8167	
 
 
-Taste_experience	Taste_experience_	
-5	19.6000	
-2	15.5167	
-4	24.6167	
-3	29.4167	
-1	10.8500	
+
+
+
+select Tried_before,
+	(count( Tried_before)/(select count(Tried_before) from fact_survey))*100 as Tried_before_percentage
+	     from 
+	        fact_survey
+	        group by  Tried_before;
+
+
+Tried_before	Tried_before_percentage	
+No	        51.3000	
+Yes	        48.7000	
+
+
+
+select Taste_experience,
+	(count( Taste_experience)/(select count(Taste_experience) from fact_survey))*100 as Taste_experience_percentage 
+	        from 
+	          fact_survey
+	          group by  Taste_experience;
+
+
+Taste_experience	Taste_experience_percentage	
+5	                19.6000	
+2	                15.5167	
+4	                24.6167	
+3	                29.4167	
+1	                10.8500	
 
 1 (Poor)
 		2 (Below average)
